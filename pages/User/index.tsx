@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
-import styles from "../../styles/Home.module.css";
-import booksIcon from "public/images/book-icon.jpeg";
-import { books } from "../api/books.js";
+import styles from "/styles/Home.module.css";
+import  books from "../json/books.json";
+import  bookImg from "../../public/images/bookicon.png";
 
 export default function HomePage() {
   return (
@@ -19,7 +19,7 @@ export default function HomePage() {
         <div style={{  textAlign: "center"}}>
           <Image
             alt="books image"
-            src="/images/book-icon.jpeg"
+            src="/images/bookicon.png"
             width="200"
             height="200"
           />
@@ -31,7 +31,7 @@ export default function HomePage() {
               <section className={styles.books}>
                 <Image
                   alt="book img"
-                  src={booksIcon}
+                  src={bookImg}
                   width="30"
                   height="30"
                   style={{ margin: ".6rem" }}></Image>
@@ -44,7 +44,7 @@ export default function HomePage() {
               <section className={styles.books}>
                 <Image
                   alt="book img"
-                  src={booksIcon}
+                  src={bookImg}
                   width="30"
                   height="30"
                   style={{ margin: ".6rem" }}
@@ -56,7 +56,7 @@ export default function HomePage() {
               <section className={styles.books}>
                 <Image
                   alt="book img"
-                  src={booksIcon}
+                  src={bookImg}
                   width="30"
                   height="30"
                   style={{ margin: ".6rem" }}
