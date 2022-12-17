@@ -1,0 +1,12 @@
+.parentOfBookDivs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.bookDivs{
+    background-color: azure;
+
+}
