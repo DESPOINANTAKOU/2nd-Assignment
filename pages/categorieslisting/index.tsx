@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import categoriesCss from '../../styles/categorieslisting.module.css';
 
 export default function CategoriesListing() {
+  const [sumOfBookCategories, setSumOfBookCategories] = useState("");
   const [bookCategories, setBookCategories] = useState([]);
 
   let categories: any = [];
@@ -15,6 +16,7 @@ export default function CategoriesListing() {
     books.forEach((book) => {
       console.log(book);
       categories += book.categories;
+      setSumOfBookCategories(categories);
     });
     console.log(categories);
     const newCategories = categories.split(",");
