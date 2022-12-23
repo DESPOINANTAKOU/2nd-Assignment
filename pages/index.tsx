@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "../styles/Home.module.css";
 import  bookImg from "/public/images/bookicon.png";
-import  books from "./json/books.json";
+import  books from "../public/json/books.json";
 
 export default function HomePage() {
   return (
