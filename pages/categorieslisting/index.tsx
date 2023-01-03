@@ -6,6 +6,7 @@ export default function CategoriesListing() {
   const [jsonData, setJsonData] = useState<any[]>(books);
   let [categories, setCategories] = useState<string[]>([]);
  
+
   //display in the console of the json's data that we have stored inside the jsonData state
   useEffect(() => {
     //setting localy in the jsonData state of this component all the json data```

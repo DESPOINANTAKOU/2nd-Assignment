@@ -1,4 +1,4 @@
-import  books from "../../public/json/books.json";
+import books from "../../public/json/books.json";
 import React, { useEffect, useState } from "react";
 import categoriesCss from "../../styles/categorieslisting.module.css";
 
@@ -24,19 +24,27 @@ export default function CategoriesListing() {
     setJsonData(books);
     console.log("jsonData");
     console.log(jsonData);
-    let categories:string[] = [];
+    let categories: string[] = [];
     //looping through the jsonData array  so that we can take the categories property
-    for (let i = 0; i< jsonData.length; i++){
-       categories = categories?.concat(jsonData[i].categories);
+    for (let i = 0; i < jsonData.length; i++) {
+      if (
+        jsonData[i].categories !== undefined &&
+        jsonData[i].categories !== null &&
+        jsonData[i].categories.length > 0
+      ) {
+        categories = categories.concat(jsonData[i].categories);
+      }
     }
-   console.log(categories)
-   setCategories(categories);
+    console.log(categories);
+    setCategories(categories);
   }, []);
 
   return (
     <>
       <h1>Book Categories Page</h1>
-      <div>{categories}</div>
+      <div className = {categoriesCss.bookCategoriesDivs}>
+        {categories && categories.map((category, index) => (<div key={index}>{category}</div>))}</div>
     </>
   );
 }
+
