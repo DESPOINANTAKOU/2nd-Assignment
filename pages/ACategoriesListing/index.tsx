@@ -21,30 +21,50 @@ export default function ACategoriesListing() {
     [index: string]: string[];
   }
 
-  const categories: Categories = {};
+  const ourCategories: Categories = {};
 
   books.forEach((book) => {
     book.categories.forEach((categoryName) => {
-      if (categories[categoryName] == null) {
-        categories[categoryName] = [];
+      //it takes also the case of the undefined and also null
+      if (ourCategories[categoryName] == null) {
+        //we build ourCategories array with the categoryName items from the json
+        ourCategories[categoryName] = [];
       }
-      categories[categoryName].push(book.title);
+      //we choose string data structure cause it will not create duplicates in the categories
+      ourCategories[categoryName].push(book.title);
+      console.log(ourCategories[categoryName]);
+      console.log(book.title);
     });
+    console.log(book.isbn);
   });
-
-  console.log(categories);
 
   return (
     <>
-    <h1>List of Book Categories</h1>
+      <h1>List of Book Categories</h1>
       <div className={styles.parentDiv}>
-        {Object.keys(categories).map((category, index) => (
+        {Object.keys(ourCategories).map((category, index) => (
           <div key={index} className={styles.categories}>
             <span id={styles.category}>{category}</span>{" "}
-            <span>Amount of Books: {categories[category].length}</span>
+            <span>Amount of Books: {ourCategories[category].length}</span>
+            <ul style={{ alignSelf: "flex-start" }}>
+              {ourCategories[category].map((bookTitle, index) => {
+                return (
+                  <li
+                    className={styles.li}
+                    style={{ marginBottom: ".5rem" }}
+                    key={index}
+                  >
+                    <a href={`/BookPage/${encodeURI(bookTitle)}`}>
+                      {bookTitle}
+                    </a>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         ))}
       </div>
+      <div style={{ visibility: "hidden" }}></div>
     </>
   );
 }
