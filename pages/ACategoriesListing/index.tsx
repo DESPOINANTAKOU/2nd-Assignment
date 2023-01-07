@@ -41,12 +41,13 @@ export default function ACategoriesListing() {
   return (
     <>
       <h1>List of Book Categories</h1>
+      
       <div className={styles.parentDiv}>
         {Object.keys(ourCategories).map((category, index) => (
           <div key={index} className={styles.categories}>
             <span id={styles.category}>{category}</span>{" "}
             <span>Amount of Books: {ourCategories[category].length}</span>
-            <ul style={{ alignSelf: "flex-start" }}>
+            <ul style={{ paddingLeft: "0" }}>
               {ourCategories[category].map((bookTitle, index) => {
                 return (
                   <li
@@ -54,7 +55,7 @@ export default function ACategoriesListing() {
                     style={{ marginBottom: ".5rem" }}
                     key={index}
                   >
-                    <a href={`/BookPage/${encodeURI(bookTitle)}`}>
+                    <a href={`/BookPage/${(bookTitle)}`}>
                       {bookTitle}
                     </a>
                   </li>
@@ -64,7 +65,6 @@ export default function ACategoriesListing() {
           </div>
         ))}
       </div>
-      <div style={{ visibility: "hidden" }}></div>
     </>
   );
 }
