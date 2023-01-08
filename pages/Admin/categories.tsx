@@ -11,7 +11,7 @@ export default function Categories() {
   const columns: GridColDef[] = [
     { field: "col1", headerName: "Categories", width: 400 },
   ];
-
+  
   //function that creates the rows
   const getCategories = () => {
     const newCategories: any = new Set();
