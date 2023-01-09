@@ -1,0 +1,46 @@
+.form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: lightblue;
+  margin-top: 2rem;
+  border: 2px solid darkblue;
+  width: 80%;
+  margin: auto;
+}
+
+.formDivs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 0.8rem;
+}
+
+.span {
+  width: 30%;
+}
+
+.button {
+  margin: 1rem;
+  padding: 0.4rem;
+  background-color: beige;
+  border: none;
+  cursor: pointer;
+  color: #006699;
+  width: 20%;
+}
+
+.input {
+    border: none;
+    width: 39%;
+    height: 2.1rem;
+}
+
+.input:focus {
+  border: 1px solid black;
+  outline: none;
+}
+

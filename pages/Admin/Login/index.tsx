@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useRouter } from 'next/router';
+import styles from 'styles/login.module.css';
 
 
 export default function Login() {
@@ -40,12 +41,17 @@ export default function Login() {
 
   return (
     <>
-      <span>Username</span>
-      <input type="text" value={username} onChange={handleUsername} />
-      <span>Password</span>
-      <input type="password" value={password} onChange={handlePassword} />
-      <button onClick={submit}>Submit</button>
+    <h1>Login Form</h1>
+    <form action="" className={styles.form}>
+      <div className={styles.formDivs}>
+      <span className={styles.span}>Username</span>
+      <input type="text" value={username} onChange={handleUsername} className={styles.input} /></div>
+      <div className={styles.formDivs}>
+      <span className={styles.span}>Password</span>
+      <input type="password" value={password} onChange={handlePassword} className={styles.input}  /></div>
+      <button className={styles.button} onClick={submit}>Submit</button>
      {error ? <p>Invalid Username or Password</p> : ""}
+     </form>
     </>
   );
 }
