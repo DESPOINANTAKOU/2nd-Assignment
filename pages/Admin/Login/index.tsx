@@ -1,16 +1,27 @@
-import { useState } from "react";
-import { useRouter } from 'next/router';
-import styles from 'styles/login.module.css';
-
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import styles from "styles/login.module.css";
+import { Formik, Form, useField, useFormikContext } from "formik";
 
 export default function Login() {
+  //the password and username must be states because the can change the UI
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [clicked, setClicked] = useState<boolean>(false);
+  //this state works as a flag for the api error possibility
   const [error, setError] = useState(false);
+  //part of the next router
   const router = useRouter();
-  
 
-  const submit = async (_e: any) => {
+  const handleUsername = (e: any) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePassword = (e: any) => {
+    setPassword(e.target.value);
+  };
+
+  const submit = async (e: any) => {
     const response = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -22,36 +33,57 @@ export default function Login() {
       }),
     });
     const result = await response.json();
-    if(result){
-        router.push("/Admin/categories");
+
+    if (result) {
+      // if (e) {
+      //   e.preventDefault();
+      // }
+      router.push("/Admin/categories");
+      return console.log("correct API call");
+    } else {
+      // if (e) {
+      //   e.preventDefault();
+      // }
+      setError(true);
+      return console.log("Api call");
     }
-    else {
-        setError(true);
-    }
   };
 
-
-  const handleUsername = (e: any) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePassword = (e: any) => {
-    setPassword(e.target.value);
-  };
+  useEffect(() => {
+    (_e: any) => {
+      submit(_e);
+    };
+  }, [clicked]);
 
   return (
-    <>
-    <h1>Login Form</h1>
-    <form action="" className={styles.form}>
-      <div className={styles.formDivs}>
-      <span className={styles.span}>Username</span>
-      <input type="text" value={username} onChange={handleUsername} className={styles.input} /></div>
-      <div className={styles.formDivs}>
-      <span className={styles.span}>Password</span>
-      <input type="password" value={password} onChange={handlePassword} className={styles.input}  /></div>
-      <button className={styles.button} onClick={submit}>Submit</button>
-     {error ? <p>Invalid Username or Password</p> : ""}
-     </form>
-    </>
+    <React.Fragment>
+      <h1>Login Form</h1>
+      <form action="" method="post" className={styles.form}>
+        <div className={styles.formDivs}>
+          <label className={styles.span}>Username</label>
+          <input
+            type="text"
+            value={username}
+            onChange={handleUsername}
+            className={styles.input}
+            required
+          />
+        </div>
+        <div className={styles.formDivs}>
+          <label className={styles.span}>Password</label>
+          <input
+            type="password"
+            value={password}
+            onChange={handlePassword}
+            className={styles.input}
+            required
+          />
+        </div>
+        <button className={styles.button} onClick={() => setClicked(true)}>
+          Submit
+        </button>
+        {error ? <p>Invalid Username or Password</p> : ""}
+      </form>
+    </React.Fragment>
   );
 }
