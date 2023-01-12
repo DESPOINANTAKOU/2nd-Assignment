@@ -18,7 +18,7 @@ export default function ChosenCategory() {
   console.log(titles);
 
   const columns: GridColDef[] = [
-    { field: "col1", headerName: chosenCategory, width: 400 },
+    { field: "col1", headerName: GridColDef, width: 400 },
   ];
 
 
@@ -26,7 +26,7 @@ export default function ChosenCategory() {
     return {id: index + 1, col1: title}
   });
 
-  const cellClick = (e) => {
+  const cellClick = (e:any) => {
     router.push(`/BookPage/${e.value}`)
   }
 

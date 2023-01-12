@@ -10,7 +10,7 @@
   margin: auto;
 }
 
-.formDivs {
+.inputContainer {
   display: flex;
   flex-direction: row;
   justify-content: center;
