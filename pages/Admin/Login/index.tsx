@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import styles from "styles/login.module.css";
 import { Formik, Form, Field, ErrorMessage, useFormik } from "formik";
+import * as Yup from 'yup';
 
 export default function Login() {
   //the password and username must be states because the can change the UI
@@ -13,16 +14,25 @@ export default function Login() {
   //part of the next router
   const router = useRouter();
 
+const admin = "admin";
+
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
+    validationSchema: Yup.object().shape({
+      username: Yup.string().matches(admin).required('Required'),
+      password: Yup.string().required('Required'),
+    }),
     onSubmit: values => {
       console.log(values);
     },
   });
 
+  //shows us what errors we have done
+  console.log(formik.errors);
+  
   return (
     <React.Fragment>
       <h1>Login Form</h1>
