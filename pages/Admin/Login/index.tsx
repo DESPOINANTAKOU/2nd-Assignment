@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import Categories from "../../../components/categories";
 
 export default function Login() {
-  const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [isLogged, setIsLogged] = useState<boolean | any>(false);
   //the password and username must be states because the can change the UI
   const [clicked, setClicked] = useState<boolean>(false);
   //this state works as a flag for the api error possibility

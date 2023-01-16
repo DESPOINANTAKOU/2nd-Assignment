@@ -1,6 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { cookies } from 'next/headers';
 
-export default function handler(req: any, res: any) {
+export default function handler(req: NextApiRequest, res: NextApiResponse ) {
   
   if (req.method == "POST") {
     const { username, password } = req.body;
