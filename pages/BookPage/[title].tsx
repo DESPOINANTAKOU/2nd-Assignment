@@ -7,13 +7,29 @@ export default function BookPage() {
   const router = useRouter();  
   const { title } = router.query;
 
+interface SelectedBook {
+  title :  string,
+  isbn: string,
+  pageCount: number,
+  publishedDate: {
+      $date: string,
+  },
+  thumbnailUrl: string,
+  shortDescription: string,
+  longDescription: string,
+  status: string,
+  authors: string[],
+  categories: string[]
+}
+
+
   const result = books.filter((book) => {
     return book.title === title;
   });
 
   console.log(result);
 
-  const selectedBook = result[0];
+  const selectedBook:SelectedBook = result[0];
   if (selectedBook) {
     return (
       <>
