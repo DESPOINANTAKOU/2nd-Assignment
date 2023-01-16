@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -28,6 +29,6 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "cypress": "^12.1.0"
+    "cypress": "^12.3.0"
   }
 }

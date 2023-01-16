@@ -43,7 +43,7 @@ export default function ACategoriesListing() {
       <h1>List of Book Categories</h1>
       
       <div className={styles.parentDiv}>
-        {Object.keys(ourCategories).map((category, index) => (
+        {Object.keys(ourCategories).sort().map((category, index) => (
           <div key={index} className={styles.categories}>
             <span id={styles.category}>{category}</span>{" "}
             <span>Amount of Books: {ourCategories[category].length}</span>

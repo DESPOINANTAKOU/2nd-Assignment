@@ -27,7 +27,7 @@ export default function HomePage() {
         <h2>Choose from our collection of books:</h2>
         <div className={styles.parentDivOfJsonDivs}>
           {books?.slice(0, 4).map((book, index) => (
-            <div className={styles.jsonDivs} key={index}>
+            <div className={styles.jsonDivs + " section"} key={index}>
               <section className={styles.books}>
                 <Image
                   alt="book img"

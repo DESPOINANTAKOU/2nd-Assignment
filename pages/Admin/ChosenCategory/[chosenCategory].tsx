@@ -18,7 +18,7 @@ export default function ChosenCategory() {
   console.log(titles);
 
   const columns: GridColDef[] = [
-    { field: "col1", headerName: GridColDef, width: 400 },
+    { field: "col1", headerName: "Title", width: 400 },
   ];
 
 
