@@ -64,7 +64,7 @@ export default function Categories(props:any) {
               borderRadius: "7px",
               backgroundColor: "lightblue",
             }}
-            onClick={(_event: any) => props.setIsLogged(true)}
+            onClick={(_event: any) => {props.setLogged(false)}}
           >
             Log Out
           </button>

@@ -4,24 +4,23 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
 export default function BookPage() {
-  const router = useRouter();  
+  const router = useRouter();
   const { title } = router.query;
 
-interface SelectedBook {
-  title :  string,
-  isbn: string,
-  pageCount: number,
-  publishedDate: {
-      $date: string,
-  },
-  thumbnailUrl: string,
-  shortDescription: string,
-  longDescription: string,
-  status: string,
-  authors: string[],
-  categories: string[]
-}
-
+  interface SelectedBook {
+    title: string;
+    isbn?: string;
+    pageCount: number;
+    publishedDate?: {
+      $date: string;
+    };
+    thumbnailUrl?: string;
+    shortDescription?: string;
+    longDescription?: string;
+    status: string;
+    authors: string[];
+    categories: string[];
+  }
 
   const result = books.filter((book) => {
     return book.title === title;
@@ -29,7 +28,7 @@ interface SelectedBook {
 
   console.log(result);
 
-  const selectedBook:SelectedBook = result[0];
+  const selectedBook: SelectedBook = result[0];
   if (selectedBook) {
     return (
       <>
@@ -46,7 +45,7 @@ interface SelectedBook {
             if (Array.isArray(selectedBook[key]))
               showValue = selectedBook[key].toString();
             else if (typeof selectedBook[key] === "object")
-              showValue = selectedBook[key]["$date"]
+              showValue = selectedBook[key]["$date"];
             return (
               <TextField
                 key={index}
