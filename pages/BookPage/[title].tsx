@@ -2,10 +2,12 @@ import { useRouter } from "next/router";
 import books from "../../public/json/books.json";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import React from "react";
 
 export default function BookPage() {
   const router = useRouter();
-  const { title } = router.query;
+  //part of the Next router from where we can get our title
+  const bookTitle = router.query.title;
 
   interface SelectedBook {
     title: string;
@@ -22,16 +24,22 @@ export default function BookPage() {
     categories: string[];
   }
 
+  //we have the dynamic value of the title because of the Next router and we basically check this value with the title inside the json file so that it can
+  //be matched and return us the data for the specific book!
   const result = books.filter((book) => {
-    return book.title === title;
+    if (book.title === bookTitle) {
+      return book;
+    }
+    console.log(book);
   });
 
   console.log(result);
 
   const selectedBook: SelectedBook = result[0];
-  if (selectedBook) {
+
+  if (result) {
     return (
-      <>
+      <React.Fragment>
         <Box
           component="form"
           sx={{
@@ -40,26 +48,28 @@ export default function BookPage() {
           noValidate
           autoComplete="off"
         >
-          {Object.keys(selectedBook).map((key, index) => {
-            let showValue = selectedBook[key];
-            if (Array.isArray(selectedBook[key]))
-              showValue = selectedBook[key].toString();
+          {Object.keys(result).map((key: string, index: number) => {
+            let bookInfo: { [key: string]: any } = result;
+            console.log(bookInfo);
+           if (Array.isArray(selectedBook[key]))
+           showValue = selectedBook[key].toString();
             else if (typeof selectedBook[key] === "object")
-              showValue = selectedBook[key]["$date"];
+            showValue = selectedBook[key]["$date"];
             return (
               <TextField
                 key={index}
                 id="outlined-multiline-flexible"
                 label={key}
-                defaultValue={showValue}
+                defaultValue={bookInfo}
                 InputProps={{
                   readOnly: true,
                 }}
               />
             );
           })}
+          
         </Box>
-      </>
+      </React.Fragment>
     );
   } else {
     return (

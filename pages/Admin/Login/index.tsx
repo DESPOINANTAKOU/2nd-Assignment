@@ -11,16 +11,19 @@ export default function Login() {
   //this state works as a flag for the api error possibility
   const [error, setError] = useState(false);
 
-
+//structure of formik form
   const formik = useFormik({
+    //initialization of values that formik will check
     initialValues: {
       username: '',
       password: '',
     },
+    //validation of our form
     validationSchema: Yup.object().shape({
       username: Yup.string().required('Required'),
       password: Yup.string().required('Required'),
     }),
+    //what formik does when the user  submits his inputs
     onSubmit: async  values => {
       console.log(values);
      const request = {
@@ -35,13 +38,15 @@ export default function Login() {
       if (result) {
         setIsLogged(true);
       } else {
-        setError(true)
+        setError(true);
       }
     },
   });
 
   //shows us what errors we have done
   console.log(formik.errors);
+
+  
   if (!isLogged){
     return (
       <React.Fragment>

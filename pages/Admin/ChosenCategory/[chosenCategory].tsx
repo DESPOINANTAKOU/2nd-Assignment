@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
-import { useLayoutEffect } from "react";
 import books from "../../../public/json/books.json";
 import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 
 export default function ChosenCategory() {
   const router = useRouter();
-  const { chosenCategory } = router.query;
+  const  {chosenCategory}= router.query;
 
   const titles: string[] = [];
 
@@ -43,7 +42,6 @@ export default function ChosenCategory() {
           onCellClick={cellClick}
         />
       </Box>
-      
     </>
   );
 }
